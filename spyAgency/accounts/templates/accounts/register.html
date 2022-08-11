@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Register</h1>
+    <div class="col-lg-6">
+        <a type="button" class="btn btn-block" href="{% url 'manager_register' %}">Register for managers</a>
+    </div>
+    <div class="col-lg-6">
+        <a type="button" class="btn btn-block" href="{% url 'hitmam_register' %}">Register for hitman</a>
+    </div>
+
+
+{% endblock content %}

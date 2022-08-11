@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Spy Agency</title>
+<link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="wrapper">
+  <header id="header">
+    <div id="logo"><img src="{% static 'logo.png' %}" width="50" alt=""/></div>
+    <div id="topbanner"><img src="{% static 'banner.png' %}" width="800" height="200" alt=""/></div>
+  </header>
+  <aside id="leftsidebar">
+   <nav id="nav">
+    <ul>
+      {% if user.is_authenticated%}
+       <li>{{user.get_username}} </li>
+       <li><a href="{% url 'logout' %}">Logout</a> </li>
+      {%else%}
+       <li> <a href="{% url 'login' %}" >Home</a ></li>
+       <li> <a href="{% url 'register' %}" >Register</a ></li>
+      {% endif %}
+
+
+
+    </ul>
+    </nav>
+  </aside>
+  <section id="main">
+    {% block content %}
+      <h1>Bienvenidos</h1>
+      <p>Sito que desplega los indicaores financieros UDIS, DOLLAR y TIIE</p>
+      {% endblock content %}
+  </section>
+  <footer id="footer">Copyright &copy; 2022 Spy Agency</footer>
+</div>
+</body>
+</html>

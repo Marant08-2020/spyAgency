@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post">
+    <h1>Create Hit</h1>
+   <table>
+       {{hitForm}}
+       {% csrf_token %}
+   </table>
+  <button type="submit">submit</button>
+
+</form>
+
+{% endblock content %}
