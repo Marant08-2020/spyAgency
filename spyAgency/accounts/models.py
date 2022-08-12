@@ -10,9 +10,16 @@ STATE = (
 
 # Create your models here.
 class CustomUser(AbstractUser):
+    is_boss = models.BooleanField(default=False)
     is_manager = models.BooleanField(default=False)
     is_hitman = models.BooleanField(default=False)
     email = models.EmailField(_('email address'))
+
+    def get_boss_profile(self):
+        boss_profile = None
+        if hasattr(self, 'boss'):
+            boss_profile = self.boss
+        return boss_profile
 
     def get_manager_profile(self):
         manager_profile = None
@@ -28,6 +35,15 @@ class CustomUser(AbstractUser):
 
     class Meta:
         db_table = 'auth_user'
+
+
+class Boss(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, default='username')
+    name = models.CharField(max_length=255)
+    state = models.CharField(max_length=1, choices=STATE)
+
+    def __str__(self):
+        return f'{self.user}'
 
 
 class Manager(models.Model):
@@ -47,5 +63,4 @@ class HitMan(models.Model):
                                 blank=True, default='username')
 
     def __str__(self):
-        return f'Id->{self.id}  name->{self.user}'
-
+        return f'{self.user}'

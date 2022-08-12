@@ -2,12 +2,121 @@
 {% block content %}
 
 <h1>List of Hits</h1>
-    {% if hitman == 'hitman' %}
-        <div>
+    {% if roleH == 'hitman' %}
+    <div>
+
+            <h1>My hits as a hitman</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Target</th>
+            <th>Status</th>
+            <th>Created by</th>
+            <th>Edition</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% if histMan %}
+            {% for hit in histMan  %}
+
+            <tr>
+                <td>{{hit.0}}</td>
+                <td>{{hit.1}}</td>
+                <td>{{hit.2}}</td>
+                <td>{{hit.3}}</td>
+                <td>{{hit.4}}</td>
+                <td><a href="{{hit.0}}">Details</a>  <a href="update/{{hit.0}}">Update</a></td>
+
+            </tr>
+            {%endfor%}
+        {% endif %}
+        </tbody>
+    </table>
 
         </div>
 
     {% endif %}
+ {% if roleM == 'manager' %}
+        <div>
+            <h1>The hits assigned my lackeys</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Target</th>
+            <th>Status</th>
+            <th>Created by</th>
+            <th>Edition</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% if histManager %}
+            {% for hits in histManager  %}
+
+            <tr>
+                {% for hit in hits  %}
+                <td>{{hit.0}}</td>
+                <td>{{hit.1}}</td>
+                <td>{{hit.2}}</td>
+                <td>{{hit.3}}</td>
+                <td>{{hit.4}}</td>
+                <td><a href="{{hit.0}}">Details</a>  <a href="update/{{hit.0}}">Update</a></td>
+                {%endfor%}
+
+            </tr>
+            {%endfor%}
+        {% endif %}
+        </tbody>
+    </table>
+
+        </div>
+
+    {% endif %}
+
+
+{% if roleB == 'boss' %}
+    <div>
+
+            <h1>All the hits as a Boss</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Target</th>
+            <th>Status</th>
+            <th>Created by</th>
+            <th>Edition</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% if histAll %}
+            {% for hit in histAll  %}
+
+            <tr>
+                <td>{{hit.id}}</td>
+                <td>{{hit.description}}</td>
+                <td>{{hit.target}}</td>
+                <td>{{hit.status}}</td>
+                <td>{{hit.created_by}}</td>
+                <td><a href="{{hit.id}}">Details</a>  <a href="update/{{hit.id}}">Update</a></td>
+
+            </tr>
+            {%endfor%}
+        {% endif %}
+        </tbody>
+    </table>
+
+        </div>
+
+    {% endif %}
+
 
 
 {% endblock content %}
