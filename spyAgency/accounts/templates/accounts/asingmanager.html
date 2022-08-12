@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+    <h1>Assign Manager</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td><a href="assignmanager/{{user.id}}">Assing Role Manager</a></td>
+
+        </tr>
+        {%endfor%}
+
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}

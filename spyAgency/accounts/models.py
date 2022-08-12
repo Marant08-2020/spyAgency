@@ -36,7 +36,7 @@ class Manager(models.Model):
     state = models.CharField(max_length=1, choices=STATE)
 
     def __str__(self):
-        return f'Id->{self.id}  name->{self.user}'
+        return f'{self.user}'
 
 
 class HitMan(models.Model):
@@ -44,7 +44,7 @@ class HitMan(models.Model):
     name = models.CharField(max_length=255)
     state = models.CharField(max_length=1, choices=STATE)
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE, null=True,
-                                blank=True)
+                                blank=True, default='username')
 
     def __str__(self):
         return f'Id->{self.id}  name->{self.user}'

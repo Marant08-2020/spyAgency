@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views import generic
 from django.views.generic import CreateView
 
 from .models import CustomUser
-from .forms import MangerFormRegister, HitmanFormRegister
+from .forms import MangerFormRegister, HitmanFormRegister, RegisterForm
 
 
 def login_user(request):
@@ -31,31 +33,40 @@ def register(request):
     return render(request, 'accounts/register.html')
 
 
+def assignManager(request):
+
+    users = CustomUser.objects.order_by('id')
+    #users = users.values_list('id', 'username', 'email')
+    return render(request, 'accounts/asingmanager.html', {'users': users})
+
+
 class MangerRegister(CreateView):
 
-    #model = CustomUser
     form_class = MangerFormRegister
     template_name = 'accounts/users_register.html'
 
     def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('/hits')
+        form.save()
+        return redirect('/')
 
 
 class HitManRegister(CreateView):
 
-    #model = CustomUser
     form_class = HitmanFormRegister
     template_name = 'accounts/users_register.html'
 
     def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('/hits')
+        form.save()
+        return redirect('/')
 
 
 def logout_user(request):
     logout(request)
     return redirect('/')
+
+
+class RegisterView(generic.CreateView):
+    form_class = RegisterForm
+    template_name = 'accounts/registeruser.html'
+    success_url = reverse_lazy('login')
 

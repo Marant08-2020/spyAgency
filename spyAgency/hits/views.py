@@ -47,14 +47,21 @@ def showHits(request):
     if current_user.is_hitman:
         role = current_user.get_hitman_profile()
         if role:
-            hitUser = HitMan.objects.get(user=user_name)
-            print(hitUser)
-            #histHitman = Hits.objects.filter(id_hitman_id=hitUser.id)
-            #hitsListHitman = histHitman.values_list('id', 'description', 'target', 'status', 'created_by')
-
             print('I am Hitman')
+            hitUser = HitMan.objects.filter(user__username=user_name).values('id')
+            hitsMan = Hits.objects.get(pk=hitUser[0]['id'])
+            #histHitman = Hits.objects.filter(id_hitman_id=hitUser[0]['id'])
+            #hitsListHitman = histHitman.values_list('id', 'description', 'target', 'status', 'created_by')
+            context = {
+                'message': '',
+                'histMan': hitsMan,
+                'role': 'hitman',
+            }
+            return render(request, 'hits/listahits.html', context)
+
+
             #print(hitsListHitman)
-            render(request, 'hits/home.html')
+            #render(request, 'hits/home.html')
         else:
             print('Assign the role Hitman')
             render(request, 'hits/home.html')
