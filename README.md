@@ -33,6 +33,9 @@ Steps for its configuration:
 
 5. Get in to spyAgency\spyAgency and run `python manage.py runserver`
 
+Notes: The login for boss is C@rita2020 as a password and user boss. Also for the others user is the same password and superuser es admin with password 123
+
+
 MIT License
 
 Marco Antonio Mojica Martinez 
