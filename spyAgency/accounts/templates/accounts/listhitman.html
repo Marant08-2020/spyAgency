@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+    <h1>List Hitmen</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Name</th>
+            <th>State</th>
+            <th>Manager</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for hi in hitman %}
+        <tr>
+            <td>{{hi.id}}</td>
+            <td>{{hi.user}}</td>
+            <td>{{hi.name}}</td>
+            <td>{{hi.state}}</td>
+            <td>{{hi.manager}}</td>
+            <td><a href="hitmen/{{hi.id}}">Details</a></td>
+
+        </tr>
+        {%endfor%}
+
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}

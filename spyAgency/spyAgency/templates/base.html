@@ -17,11 +17,26 @@
     <ul>
       {% if user.is_authenticated%}
        <li>{{user.get_username}} </li>
+       <li><a href="{% url 'bulk' %}">Bulk Hits</a> </li>
+       {% if user.is_boss %}
+        <li><a href="{% url 'manager_register' %}">Register Manager</a> </li>
+        <li><a href="{% url 'hitmam_register' %}">Register Hitman</a> </li>
+        <li><a href="{% url 'listhitmendetails' %}">List Hitman</a> </li>
+        <li><a href="{% url 'edithitmen' %}">Change Hitman</a> </li>
+        <li><a href="{% url 'create_hits' %}">Create a Hit</a> </li>
+       {% endif %}
+        {% if user.is_manager  and not user.is_boss %}
+        <li><a href="{% url 'create_hits' %}">Create a Hit</a> </li>
+         <li><a href="{% url 'listhitmendetails' %}">List Hitman</a> </li>
+       {% endif %}
        <li><a href="{% url 'logout' %}">Logout</a> </li>
+
+
       {%else%}
        <li> <a href="{% url 'login' %}" >Home</a ></li>
        <li> <a href="{% url 'register' %}" >Register</a ></li>
       {% endif %}
+
 
 
 
@@ -31,7 +46,6 @@
   <section id="main">
     {% block content %}
       <h1>Bienvenidos</h1>
-      <p>Sito que desplega los indicaores financieros UDIS, DOLLAR y TIIE</p>
       {% endblock content %}
   </section>
   <footer id="footer">Copyright &copy; 2022 Spy Agency</footer>

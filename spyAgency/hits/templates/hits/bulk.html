@@ -14,7 +14,7 @@
             <th>Target</th>
             <th>Status</th>
             <th>Created by</th>
-
+            <th>Edition</th>
 
         </tr>
         </thead>
@@ -28,7 +28,8 @@
                 <td>{{hit.2}}</td>
                 <td>{{hit.3}}</td>
                 <td>{{hit.4}}</td>
-
+                <td><a href="{% url 'home' %}{{hit.0}}">Details</a>
+                    <a href="{% url 'home' %}update/{{hit.0}}">Update</a></td>
 
             </tr>
             {%endfor%}
@@ -50,7 +51,7 @@
             <th>Target</th>
             <th>Status</th>
             <th>Created by</th>
-
+            <th>Edition</th>
 
         </tr>
         </thead>
@@ -65,7 +66,8 @@
                 <td>{{hit.2}}</td>
                 <td>{{hit.3}}</td>
                 <td>{{hit.4}}</td>
-
+                <td><a href="{% url 'home' %}{{hit.0}}"  >Details</a>
+                    <a href="{% url 'home' %}update/{{hit.0}}">Update</a></td>
                 {%endfor%}
 
             </tr>
@@ -91,7 +93,7 @@
             <th>Target</th>
             <th>Status</th>
             <th>Created by</th>
-
+            <th>Edition</th>
 
         </tr>
         </thead>
@@ -105,7 +107,8 @@
                 <td>{{hit.target}}</td>
                 <td>{{hit.status}}</td>
                 <td>{{hit.created_by}}</td>
-
+                <td><a href="{% url 'home' %}{{hit.id}}">Details</a>
+                    <a href="{% url 'home' %}update/{{hit.id}}">Update</a></td>
 
             </tr>
             {%endfor%}

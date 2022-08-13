@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Details Hitmen</h1>
+
+
+<div>ID: {{hitman.id}}</div>
+<div>User: {{hitman.user}}</div>
+<div>Name: {{hitman.name}}</div>
+<div>State: {{hitman.state}}</div>
+<div>Manager: {{hitman.manager}}</div>
+
+<a href="{%url 'listhitmendetails'%}" >Return list to hitman</a>
+
+
+{% endblock content %}
