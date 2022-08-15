@@ -35,6 +35,9 @@ Steps for its configuration:
 
 Notes: The login for boss is C@rita2020 as a password and user boss. Also for the others user is the same password and superuser es admin with password 123
 
+# Why Django?
+
+Because is fast, secure, and scalable, so this is how it complies the twelve factor APP.
 
 MIT License
 
